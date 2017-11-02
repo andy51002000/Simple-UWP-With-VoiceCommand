@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
+  <CommandSet xml:lang="en-us" Name="MyLibraryCommandSet_en-us">
+    <AppName> my library </AppName>
+    <Example> Show Movies from my library </Example>
+
+    <Command Name="showMovies">
+      <Example> Show Movies </Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase"> show [my] movies </ListenFor>
+      <ListenFor RequireAppName="ExplicitlySpecified"> show {builtin:AppName} movies  </ListenFor>
+      <Feedback> Showing ..  </Feedback>
+      <Navigate />
+    </Command>
+
+    <Command Name="addNewMovie">
+      <Example> Add new movie</Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase"> add {MovieName} </ListenFor>
+      <ListenFor RequireAppName="ExplicitlySpecified"> add {MovieName} to {builtin:AppName} </ListenFor>
+      <ListenFor RequireAppName="ExplicitlySpecified"> {builtin:AppName} {*} add {MovieName} {*}</ListenFor>
+      <Feedback> Updating ... </Feedback>
+      <Navigate />
+    </Command>
+
+    <Command Name="findMovie">
+      <Example> Find a movie</Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase"> find {MovieName} </ListenFor>
+      <ListenFor RequireAppName="ExplicitlySpecified"> find {MovieName} from {builtin:AppName} </ListenFor>
+      <ListenFor RequireAppName="ExplicitlySpecified"> {builtin:AppName} add {MovieName}</ListenFor>
+      <Feedback> Finding ... </Feedback>
+      <VoiceCommandService Target="MyVoiceCommandService" />
+    </Command>
+
+
+
+    <PhraseList Label="MovieName">
+      <Item>Blood Diamond</Item>
+      <Item>God Father</Item>
+      <Item>War Horse</Item>
+      <Item>Dark Knight</Item>
+    </PhraseList>
+    
+  </CommandSet>
+</VoiceCommands>
